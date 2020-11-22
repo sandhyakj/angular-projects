@@ -1,0 +1,78 @@
+{
+    "tasks": [
+        {
+            "id": "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxx1",
+            "title": "BA Task - Requirement Analysis",
+            "description": "Requirement Analysis after user story elaboration",
+            "status": "Done",
+            "priority": "Major",
+            "assignee": {
+                "name": "Samarth KN",
+                "email": "samarth-kn@gmail.com"
+            }
+        },
+        {
+            "id": "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxx1",
+            "title": "Database design",
+            "description": "Database design from requirements",
+            "status": "Done",
+            "priority": "Major",
+            "assignee": {
+                "name": "John Smith",
+                "email": "john-smith@gmail.com"
+            }
+        },
+        {
+            "id": "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxx2",
+            "title": "UI-Analysis",
+            "description": "Impact Analysis & Mock Json Preparation along with requirement walk through",
+            "status": "In Progress",
+            "priority": "Major",
+            "assignee": {
+                "name": "Sandhya KJ",
+                "email": "sandhya-k@gmail.com"
+            }
+        },
+        {
+            "id": "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxx3",
+            "title": "API-Analysis",
+            "description": "Impact Analysis & Mock Json Preparation along with requirement walk through",
+            "status": "In Progress",
+            "priority": "Major",
+            "assignee": {
+                "name": "Peter Burg",
+                "email": "peter-burg@gmail.com"
+            }
+        },
+        {
+            "id": "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxx4",
+            "title": "UI-Coding",
+            "description": "UI - Coding as per the wireframes  - follow coding standards & best practices",
+            "status": "To Do",
+            "priority": "Major",
+            "assignee": {
+                "name": "Sandhya KJ",
+                "email": "sandhya-k@gmail.com"
+            }
+        },
+        {
+            "id": "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxx4",
+            "title": "API-Coding",
+            "description": "API Coding - follow coding standards & best practices",
+            "status": "To Do",
+            "priority": "Major",
+            "assignee": {
+                "name": "Peter Burg",
+                "email": "peter-burg@gmail.com"
+            }
+        }
+    ],
+    "assignee":[
+        { "name": "Samarth KN", "email": "samarth-kn@gmail.com"},
+        { "name": "John Smith", "email": "john-smith@gmail.com"},
+        { "name": "Peter Burg", "email": "peter-burg@gmail.com"},
+        { "name": "Sandhya KJ", "email": "sandhya-k@gmail.com"}
+    ],
+    "status":["To Do", "In Progress", "Done"],
+    "priority":["Critical","Major","Medium","Minor"]
+}

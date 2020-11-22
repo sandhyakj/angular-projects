@@ -1,0 +1,38 @@
+.dropdown-item a:visited{
+    color: #eee;
+    text-decoration: none;
+  }
+  
+  .dropdown-item.dropdown-item:active{
+      background-color: transparent;
+      color:initial;
+  }
+  
+  .asignee-start{
+      width:25px;
+      height:25px;
+  }
+  
+  .task-state{
+      width:10px;
+      height:10px;
+  }
+  
+  .dropleft .dropdown-menu {
+      top: 0;
+      right: 100%;
+      left: 0;
+      margin-top: 0;
+      margin-right: .125rem;
+      font-size: 0.75rem;
+      min-width: 8rem !important;
+      .dropdown-item{
+          padding:.25rem 1rem;
+      }
+      span{
+          i{
+              font-size: 1rem;
+          }
+      }
+  }
+  
