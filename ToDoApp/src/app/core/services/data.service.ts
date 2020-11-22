@@ -54,7 +54,7 @@ export class DataService {
   }
 
 
-  remove(id) {
+  remove(id:string) {
     return of(true);
   }
 

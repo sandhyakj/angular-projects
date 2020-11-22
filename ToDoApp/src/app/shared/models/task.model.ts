@@ -5,6 +5,8 @@ export interface Task {
     status: string;
     priority: string;
     assignee: assignee;
+    comments:Array<object>;
+    attachments:Array<string>;
   }
 
   export interface assignee {
