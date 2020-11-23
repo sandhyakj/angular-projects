@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs'
-import {shareReplay, map} from 'rxjs/operators'
+import {map} from 'rxjs/operators'
 import { uniqueid } from '../../shared/components/uniqueid';
 import { Task, assignee } from '../../shared/models/task.model';
 import {DataService} from './data.service';
@@ -77,6 +77,28 @@ export class TaskStoreService {
   set statusus(val: String[]) {
     this._statusus.next(val);
   }
+
+  async saveTask(payload:Task) {
+    let Task = this.tasks.find(Task => Task.id === payload.id);
+
+    if(Task) {
+      // optimistic update
+      const index = this.tasks.indexOf(Task);
+      this.tasks[index] = {...payload};
+      this.tasks = [...this.tasks];
+
+      try {
+        await this.dataService
+          .saveTask(Task)
+          .toPromise();
+      } catch (e) {
+        console.error(e);
+        this.tasks[index] = {...Task}
+      }
+    }
+  }
+
+  
 
   async addTask(payload:Task) {
 

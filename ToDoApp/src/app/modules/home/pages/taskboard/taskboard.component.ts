@@ -5,7 +5,6 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder,Validators,FormArray } from '@angular/forms';
 
 export enum Mode {
-  view, 
   edit, 
   create
 }
@@ -22,6 +21,7 @@ export class TaskboardComponent implements OnInit, OnDestroy {
   public mode = Mode.create;
   public modalTitle:string = 'Add New Item';
   public taskForm = this.fb.group({
+    id:[''],
     title: ['', Validators.required],
     description: [''],
     priority:['', Validators.required],
@@ -41,14 +41,42 @@ export class TaskboardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
-  open(content:any) {
+  open(task:Task, content:any) {
+    this.mode = Mode.edit;
+    this.modalTitle = "Edit Item";
+    this.taskForm.setValue({
+      id:task.id,
+      title: task.title,
+      description: task.description,
+      priority:task.priority,
+      assignee:task.assignee.email,
+      status:task.status,
+      comments:task.comments,
+      commentsentered:'',
+      attachments:task.attachments,
+    });
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+  }
+
+  addTask(content:any) {
+    this.taskForm.setValue({
+      id:'',
+      title:'',
+      description:'',
+      priority:'',
+      assignee:'',
+      status:'',
+      comments:[],
+      commentsentered:'',
+      attachments:[]
+    });
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 
   onSubmit(){
     let formvalue = this.taskForm.value;
     let payload = {
-      id: '',
+      id:formvalue.id,
       title: formvalue.title.trim(),
       description: formvalue.description.trim() !== ''? formvalue.description.trim() :formvalue.title.trim(),
       status: formvalue.status,
@@ -57,17 +85,23 @@ export class TaskboardComponent implements OnInit, OnDestroy {
           name: 'Unassigned',
           email: ''
       },
-      comments:formvalue.commentsentered.trim() !== ''? formvalue.comments : [...formvalue.comments,formvalue.commentsentered.trim()],
+      comments:formvalue.commentsentered.trim() !== ''? [...formvalue.comments, formvalue.commentsentered.trim()] : formvalue.comments,
       attachments:[] 
     };
     
-    let assignee = this.tasksStore?.assignees.find(item=> item.email == this.taskForm.get('assignee')?.value);
+    let assignee = this.tasksStore.assignees.find(item=> item.email == this.taskForm.value.assignee);
     if(assignee == undefined){
-      formvalue.assignee = {name:'Unassigned', email:''};
+      payload.assignee = {name:'Unassigned', email:''};
     }else{
-      formvalue.assignee = {name:assignee.name, email:assignee.email};
+      payload.assignee = {name:assignee.name, email:assignee.email};
     }
 
-    this.tasksStore.addTask(payload);
+    if(this.mode == Mode.create){
+      this.tasksStore.addTask(payload);
+    }else{
+      this.tasksStore.saveTask(payload);
+    }
+    this.taskForm.reset();
+    this.modalService.dismissAll();
   }
 }

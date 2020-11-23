@@ -22,14 +22,14 @@ export class TaskComponent implements OnInit {
   };
   
   @Output() remove = new EventEmitter<string>();
+  @Output() openItem = new EventEmitter<Task>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  getRandomColor() {
-    var max = 0xffffff;
-    return '#' + Math.round( Math.random() * max ).toString( 16 );
+  openTaskItem(task:Task){
+    this.openItem.emit(task);
   }
 }

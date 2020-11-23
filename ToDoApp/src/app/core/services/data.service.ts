@@ -52,7 +52,10 @@ export class DataService {
   create(task: Task) {
     return of(task);
   }
-
+  
+  saveTask(task: Task) {
+    return of(task);
+  }
 
   remove(id:string) {
     return of(true);

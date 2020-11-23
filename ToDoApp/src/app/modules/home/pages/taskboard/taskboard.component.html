@@ -1,11 +1,11 @@
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add To Do Item</button>
+<button type="button" class="btn btn-info add-task" (click)="addTask(content)">Add Task</button>
 <div class="row">
     <div class="col m-2">
       <div class="border-bottom border-primary mb-2">
         <h4>To Do</h4>
       </div>
       <ng-container *ngFor="let task of tasksStore?.toDoTasks$ | async; trackBy: tasksTrackFn">
-        <app-task [task]="task" (remove)="tasksStore.removeTask($event)"></app-task>
+        <app-task [task]="task" (remove)="tasksStore.removeTask($event)" (openItem)="open($event, content)"></app-task>
       </ng-container>      
     </div>
     <div class="col m-2">
@@ -13,7 +13,7 @@
         <h4>In Progress</h4>
       </div>
       <ng-container *ngFor="let task of tasksStore.inProgressTasks$ | async; trackBy: tasksTrackFn">
-        <app-task [task]="task" (remove)="tasksStore.removeTask($event)"></app-task>
+        <app-task [task]="task" (remove)="tasksStore.removeTask($event)" (openItem)="open($event, content)"></app-task>
       </ng-container>    
     </div>
     <div class="col m-2">
@@ -21,37 +21,40 @@
         <h4>Completed</h4>
       </div>
       <ng-container *ngFor="let task of tasksStore.completedTasks$ | async; trackBy: tasksTrackFn">
-        <app-task [task]="task" (remove)="tasksStore.removeTask($event)"></app-task>
+        <app-task [task]="task" (remove)="tasksStore.removeTask($event)" (openItem)="open($event, content)"></app-task>
       </ng-container>    
     </div>
 </div>
 
 <ng-template #content let-modal>
   <div class="modal-header">
-     {{modalTitle}}
+    <h4 class="modal-title" id="modal-basic-title">{{modalTitle}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
   <div class="modal-body">
     <form [formGroup]="taskForm">
       <div class="d-flex">
         <div class="col-md-8">
           <div class="form-group">
-            <label for="title">Title</label>
+            <label for="title">Title <span class="text-danger" data-toggle="tooltip" data-placement="top" title="Mandatory">*</span></label>
             <input type="title" class="form-control" formControlName="title" placeholder="enter title here" required>
           </div>
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" placeholder="enter description here" rows="3"></textarea>
+            <textarea class="form-control" formControlName="description" placeholder="enter description here" rows="3"></textarea>
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <label for="priority">Priority</label>
+            <label for="priority">Priority <span class="text-danger" data-toggle="tooltip" data-placement="top" title="Mandatory">*</span></label>
             <select class="form-control" formControlName="priority">
               <option *ngFor="let priority of tasksStore?.priorities$ | async" [value]="priority">{{priority}}</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="status">Status</label>
+            <label for="status">Status <span class="text-danger" data-toggle="tooltip" data-placement="top" title="Mandatory">*</span></label>
             <select class="form-control" formControlName="status">
               <option *ngFor="let status of tasksStore?.statusus$ | async" [value]="status">{{status}}</option>
             </select>
@@ -68,14 +71,12 @@
           </select>
         </div>
 
-        <div class="border-bottom bg-secondary mb-2"></div>
-
         <div class="form-group">
           <label for="comments">Comments</label>
-          <textarea class="form-control" formControlName="commentsentered" rows="3"  placeholder="enter comments here"></textarea>
+          <textarea class="form-control" formControlName="commentsentered" rows="2"  placeholder="enter comments here"></textarea>
         </div>
-        <div class="form-group">
-          <textarea class="form-control" rows="3" *ngFor="let comment of taskForm.get('comments')?.value" [value]="comment"></textarea>
+        <div class="form-group previous-comments">
+          <textarea class="form-control mt-2" readonly *ngFor="let comment of taskForm.get('comments')?.value" [value]="comment"></textarea>
         </div>
         <div class="form-group">
           <label for="attachments">Attachments</label>
@@ -85,6 +86,6 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button (click)="onSubmit()" [disabled]="!taskForm.valid">Submit</button>
+    <button type="button" class="btn" [ngClass]="{'bg-light text-dark':!taskForm.valid, 'bg-success text-light':taskForm.valid}" (click)="onSubmit()" [disabled]="!taskForm.valid">Save</button>
   </div>
 </ng-template>
