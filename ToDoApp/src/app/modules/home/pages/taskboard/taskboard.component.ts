@@ -59,6 +59,7 @@ export class TaskboardComponent implements OnInit, OnDestroy {
   }
 
   addTask(content:any) {
+    this.mode = Mode.create;
     this.taskForm.setValue({
       id:'',
       title:'',
