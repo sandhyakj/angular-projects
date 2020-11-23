@@ -2,6 +2,30 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.0.
 
+
+## About App
+This is a simple Task app to manage a small team's to do list. The team requires that the following be in place.
+ 
+•	Each task should be able to contain
+    o	Title*
+    o	Description
+    o	Priority*
+    o	Assignee
+    o	Status*
+
+•	Users should be able to
+    o	Add comments
+    o	Add Attachments
+
+•	Users should be able to easily move tasks between the following statuses
+    o	To Do
+    o	In Progress
+    o	Done
+
+Completion status:
+App - Complete, More features to be added
+Test Cases: Yet to be done
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -25,3 +49,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
