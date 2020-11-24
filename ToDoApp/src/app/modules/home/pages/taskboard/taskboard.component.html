@@ -1,6 +1,6 @@
 <button type="button" class="btn btn-info add-task" (click)="addTask(content)">Add Task</button>
 <div class="row">
-    <div class="col m-2">
+    <div class="col-md-4 m-auto">
       <div class="border-bottom border-primary mb-2">
         <h4>To Do</h4>
       </div>
@@ -8,7 +8,7 @@
         <app-task [task]="task" (remove)="tasksStore.removeTask($event)" (openItem)="open($event, content)"></app-task>
       </ng-container>      
     </div>
-    <div class="col m-2">
+    <div class="col-md-4 m-auto">
       <div class="border-bottom border-warning">
         <h4>In Progress</h4>
       </div>
@@ -16,7 +16,7 @@
         <app-task [task]="task" (remove)="tasksStore.removeTask($event)" (openItem)="open($event, content)"></app-task>
       </ng-container>    
     </div>
-    <div class="col m-2">
+    <div class="col-md-4 m-auto">
       <div class="border-bottom border-success">
         <h4>Completed</h4>
       </div>
