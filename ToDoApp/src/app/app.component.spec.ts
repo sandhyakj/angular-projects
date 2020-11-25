@@ -26,10 +26,12 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('ToDoApp');
   });
 
-  it('should render title', () => {
+  it('should contain header, footer and body', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('ToDoApp app is running!');
+    expect(compiled.querySelector('.content').innerHTML).toContain('app-header');
+    expect(compiled.querySelector('.content').innerHTML).toContain('router-outlet');
+    expect(compiled.querySelector('.content').innerHTML).toContain('app-footer');
   });
 });
