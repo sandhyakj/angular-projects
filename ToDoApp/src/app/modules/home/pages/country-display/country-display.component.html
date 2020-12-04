@@ -1,34 +1,122 @@
 <div class="row">
     <div class="col-md-12 mx-auto">
       <div class="border-bottom border-primary mb-2">
-        <h4>Details</h4>
+        <h4>Country Details</h4>
       </div>   
-      <div class="mb-2 d-flex">
-        <div class="col-md mx-auto">
-            <label>Country:</label>
-            {{countryDetails?.name}}
-        </div>
-        <div class="col-md mx-auto">
-            <label>capital:</label>
-            {{countryDetails?.capital}}
-        </div>
-        <div class="col-md mx-auto">
-            <label>TopLevelDomain:</label>
-            {{countryDetails?.topLevelDomain}}
-        </div>
-        <div class="col-md mx-auto">
-            <label>alpha2Code:</label>
-            {{countryDetails?.alpha2Code}}
-        </div>
-        <div class="col-md mx-auto">
-            <label>alpha3Code:</label>
-            {{countryDetails?.alpha3Code}}
-        </div>
-        <div class="col-md mx-auto">
-            <label>altSpellings:</label>
-            {{countryDetails?.altSpellings}}
-        </div>
-      </div>   
+      <div class="card-body border-light d-flex flex-column">
+        <div class="mb-2 d-flex">
+            <div class="col-md mx-auto">
+                <label><b>Country:</b></label>
+                {{countryDetails?.name}}
+            </div>
+            <div class="col-md mx-auto">
+                <label><b>capital:</b></label>
+                {{countryDetails?.capital}}
+            </div>
+            <div class="col-md mx-auto">
+                <label><b>region:</b></label>
+                {{countryDetails?.region}}
+            </div>
+            <div class="col-md mx-auto">
+                <label><b>subregion:</b></label>
+                {{countryDetails?.subregion}}
+            </div>
+            <div class="col-md mx-auto">
+                <label><b>population:</b></label>
+                {{countryDetails?.population}}
+            </div>
+          </div>   
+          <div class="mb-2 d-flex">
+            <div class="col-md mx-auto">
+                <label><b>altSpellings:</b></label>
+                {{countryDetails?.altSpellings}}
+            </div>
+            <div class="col-md mx-auto">
+                <label><b>latlng:</b></label>
+                {{countryDetails?.latlng}}
+            </div>
+            <div class="col-md mx-auto">
+                <label><b>TopLevelDomain:</b></label>
+                {{countryDetails?.topLevelDomain}}
+            </div>
+            <div class="col-md mx-auto">
+                <label><b>alpha2Code:</b></label>
+                {{countryDetails?.alpha2Code}}
+            </div>
+            <div class="col-md mx-auto">
+                <label><b>alpha3Code:</b></label>
+                {{countryDetails?.alpha3Code}}
+            </div>
+          </div> 
+          <div class="mb-2 d-flex">
+            <div class="col-md mx-auto">
+                <label><b>borders:</b></label>
+                {{countryDetails?.borders}}
+            </div>
+            <div class="col-md mx-auto">
+                <label><b>demonym:</b></label>
+                {{countryDetails?.demonym}}
+            </div>
+            <div class="col-md mx-auto">
+                <label><b>area:</b></label>
+                {{countryDetails?.area}}
+            </div>
+            <div class="col-md mx-auto">
+                <label><b>gini:</b></label>
+                {{countryDetails?.gini}}
+            </div>
+            <div class="col-md mx-auto">
+                <label><b>timezones:</b></label>
+                {{countryDetails?.timezones}}
+            </div>
+          </div> 
+          <div class="mb-2 d-flex">
+            <div class="col-md mx-auto">
+                <label><b>nativeName:</b></label>
+                {{countryDetails?.nativeName}}
+            </div>
+            <div class="col-md mx-auto">
+                <label><b>numericCode:</b></label>
+                {{countryDetails?.numericCode}}
+            </div>
+            <div class="col-md mx-auto">
+                <label><b>currencies:</b></label>
+                <ng-container *ngFor="let cur of countryDetails?.currencies">
+                    <div class="d-flex flex-column">
+                        <span class="mx-2 flex flex-row">Code: <span class="mx-2">{{cur.code}}</span></span>
+                        <span class="mx-2 flex flex-row">Name: <span class="mx-2">{{cur.name}}</span></span>
+                        <span class="mx-2 flex flex-row">Symbol: <span class="mx-2">{{cur.symbol}}</span></span>
+                    </div>
+                </ng-container>                
+            </div>
+            <div class="col-md mx-auto">
+                <label><b>languages:</b></label>
+                <ng-container *ngFor="let lang of countryDetails?.languages">
+                    <div class="d-flex flex-column">
+                        <span class="mx-2 flex flex-row">iso639_1: <span class="mx-2">{{lang.iso639_1}}</span></span>
+                        <span class="mx-2 flex flex-row">iso639_2: <span class="mx-2">{{lang.iso639_2}}</span></span>
+                        <span class="mx-2 flex flex-row">name: <span class="mx-2">{{lang.name}}</span></span>
+                        <span class="mx-2 flex flex-row">nativeName: <span class="mx-2">{{lang.nativeName}}</span></span>
+                    </div>
+                </ng-container>    
+            </div>
+            <div class="col-md mx-auto">
+                <label><b>translations:</b></label>
+                {{countryDetails?.translations | json}}
+            </div>
+          </div>  
+          <div class="mb-2 d-flex">
+            <div class="col-md mx-auto">
+                <label><b>flag:</b></label>
+                {{countryDetails?.flag}}
+            </div>
+            <div class="col-md-* mx-auto">
+                <label><b>regionalBlocs:</b></label>
+                {{countryDetails?.regionalBlocs | json}}
+            </div>
+          </div>
+      </div>
+    
     </div>
 </div>
 
