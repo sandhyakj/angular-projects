@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { assignee, Task } from '../../shared/models/task.model';
+import { countryDetail } from '../../shared/models/countryDetail.model';
+
 import {map, shareReplay} from 'rxjs/operators'
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -65,4 +67,8 @@ export class DataService {
     return of(true);
   }
 
+  getCountryDetails() :Observable<countryDetail>{
+    let apiurl = 'https://restcountries.eu/rest/v2/alpha/col';
+    return this.http.get<countryDetail>(apiurl);
+  }
 }
